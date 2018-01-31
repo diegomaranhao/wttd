@@ -20,3 +20,6 @@ class SubscriptionModelTest(TestCase):
     def test_created_at(self):
         """An subscription must have a field that recorder when it was create"""
         self.assertIsInstance(self.obj.created_at, datetime)
+
+    def test_str(self):
+        self.assertEqual("Diego Maranhão", str(self.obj))
