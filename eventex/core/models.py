@@ -1,5 +1,7 @@
 from django.db import models
 from django.shortcuts import resolve_url as r
+
+
 # Create your models here.
 class Speaker(models.Model):
     name = models.CharField('nome', max_length=255)
@@ -18,6 +20,7 @@ class Speaker(models.Model):
     def get_absolute_url(self):
         return r('speaker_detail', slug=self.slug)
 
+
 class Contact(models.Model):
     EMAIL = 'E'
     PHONE = 'P'
@@ -35,3 +38,17 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.value
+
+
+class Talk(models.Model):
+    title = models.CharField('titulo', max_length=200)
+    start = models.TimeField('Início', blank=True, null=True)
+    description = models.TextField('Descrição', blank=True)
+    speakers = models.ManyToManyField('Speaker', blank=True, verbose_name='palestrante')
+
+    class Meta():
+        verbose_name = "palestra"
+        verbose_name_plural = "palestras"
+
+    def __str__(self):
+        return self.title

@@ -21,6 +21,7 @@ from eventex.core import views as core_views
 urlpatterns = [
     path('', core_views.home, name='home'),
     path('inscricao/', include('eventex.subscriptions.urls')),
+    path('palestras/', core_views.talk_list, name='talk_list'),
+    path('palestrantes/<slug:slug>/', core_views.speaker_detail, name='speaker_detail'),
     path('admin/', admin.site.urls),
-    path('palestrantes/<slug:slug>/', core_views.speaker_detail, name='speaker_detail')
 ]
